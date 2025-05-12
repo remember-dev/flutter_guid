@@ -59,6 +59,7 @@ class Guid {
 
   /// Performs a case insensitive comparison on the UUIDs contained in two Guid objects.
   /// Comparison is by value and not by reference.
+  @override
   bool operator ==(other) {
     return this.value.toLowerCase() == other.toString().toLowerCase();
   }
@@ -66,7 +67,7 @@ class Guid {
   /// Returns the hashCode.
   @override
   int get hashCode {
-    return super.hashCode;
+    return value.hashCode;
   }
 
   /// Gets the UUID value contained by the Guid object as a string.
