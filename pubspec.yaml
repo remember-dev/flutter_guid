@@ -1,6 +1,6 @@
 name: flutter_guid
 description: Emulates C# Guid. Generate new UUIDs, add variables of type Guid to classes.
-version: 0.3.2
+version: 0.3.3
 homepage: https://github.com/rocket-libs/flutter_guid
 
 environment:
@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  uuid: ^3.0.7
+  uuid: ^4.5.2
   validators: ^3.0.0
 
 dev_dependencies:
