@@ -64,4 +64,42 @@ void main() {
       expect(isValid, true);
     });
   });
+
+  group("Guid equality and hashCode tests", () {
+    test("Two Guids with same value but different case are equal", () {
+      final g1 = Guid("A3F1C9E2-7B4D-4C6A-9F21-1A2B3C4D5E6F");
+      final g2 = Guid("a3f1c9e2-7b4d-4c6a-9f21-1a2b3c4d5e6f");
+
+      expect(g1 == g2, true, reason: "Equality should be case-insensitive");
+      expect(g1.hashCode, g2.hashCode,
+          reason: "HashCodes must match for equal objects");
+    });
+
+    test("Two Guids with different values are not equal", () {
+      final g1 = Guid("A3F1C9E2-7B4D-4C6A-9F21-1A2B3C4D5E6F");
+      final g2 = Guid("B4F1C9E2-7B4D-4C6A-9F21-1A2B3C4D5E6F");
+
+      expect(g1 == g2, false);
+      expect(g1.hashCode == g2.hashCode, false);
+    });
+
+    test("Guid works correctly in a Set", () {
+      // Same value, different case
+      final g1 = Guid("A3F1C9E2-7B4D-4C6A-9F21-1A2B3C4D5E6F");
+      final g2 = Guid("a3f1c9e2-7b4d-4c6a-9f21-1a2b3c4d5e6f");
+
+      final set = {g1};
+      expect(set.contains(g2), true,
+          reason: "Set should treat equivalent Guids as the same entry");
+      expect(set.length, 1);
+    });
+
+    test("Guid does not equal non-Guid objects", () {
+      final g = Guid("A3F1C9E2-7B4D-4C6A-9F21-1A2B3C4D5E6F");
+
+      expect(g == "A3F1C9E2-7B4D-4C6A-9F21-1A2B3C4D5E6F", false);
+      // ignore: unnecessary_null_comparison
+      expect(g == null, false);
+    });
+  });
 }
